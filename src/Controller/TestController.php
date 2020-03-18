@@ -14,7 +14,6 @@ final class TestController
 
     public function triggersDeprecation(Request $request, UrlGeneratorInterface $urlGenerator): Response
     {
-        \trigger_error("This is a notice.", E_USER_NOTICE);
         \trigger_error("This is a deprecation notice.", E_USER_DEPRECATED);
 
         switch ($request->get(self::PARAM_TRIGGER)) {
