@@ -21,6 +21,10 @@ final class TestController
             case 'error':
                 \trigger_error("This is an error", E_USER_ERROR);
                 break;
+
+            case 'exception':
+                throw new \Exception("This is an exception");
+
             case 'warning':
                 \trigger_error("This is a warning", E_USER_WARNING);
                 break;
@@ -33,6 +37,13 @@ final class TestController
             ]
         );
 
+        $urlWithException = $urlGenerator->generate(
+            'triggers_deprecation',
+            [
+                self::PARAM_TRIGGER => 'exception',
+            ]
+        );
+
         return new Response(<<<HTML
 <html>
 <body>
@@ -40,12 +51,20 @@ final class TestController
 <p>
     This page should have triggered a deprecation notice.
 </p>
-<p>
-    <a href="{$urlWithWarning}">
-        Click here to raise an additional <code>WARNING</code> that will wake
-        up the <code>fingers_crossed</code> handler.
-    </a>
-</p>
+<ul>
+    <li>
+        <a href="{$urlWithWarning}">
+            Click here to raise an additional <code>WARNING</code> that will wake
+            up the <code>fingers_crossed</code> handler.
+        </a>
+    </li>
+    <li>
+        <a href="{$urlWithException}">
+            Click here to raise an additional <code>Exception</code> that will wake
+            up the <code>fingers_crossed</code> handler.
+        </a>
+    </li>
+</ul>
 <p>
     <em>
         Please note that with a default sane configuration, deprecation may

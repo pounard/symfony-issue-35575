@@ -4,7 +4,7 @@ use App\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
-error_reporting(E_ALL & ~E_USER_DEPRECATED);
+error_reporting(0);
 
 require dirname(__DIR__).'/config/bootstrap.php';
 
