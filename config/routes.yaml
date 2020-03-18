@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+triggers_deprecation:
+    path: /triggers-deprecation
+    controller: App\Controller\TestController::triggersDeprecation
