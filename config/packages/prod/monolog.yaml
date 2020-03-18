@@ -1,0 +1,13 @@
+monolog:
+    handlers:
+        main:
+            type: fingers_crossed
+            action_level: warning
+            handler: nested
+            buffer_size: 500
+        nested:
+            type: rotating_file
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            date_format: Y-m-d
+            max_files: 30
+            level: info
